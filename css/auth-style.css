@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap');
+
+body.auth-body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93') no-repeat center center/cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-container {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  color: white;
+  width: 320px;
+  text-align: center;
+}
+
+.auth-container h2 {
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.auth-container input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 6px;
+  background: #333;
+  color: white;
+}
+
+.auth-container button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background-color: #e94560;
+  color: white;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.auth-container button:hover {
+  background-color: #ff4757;
+}
+
+.auth-container p {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.auth-container a {
+  color: #e94560;
+  text-decoration: none;
+}
