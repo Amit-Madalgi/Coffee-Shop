@@ -49,3 +49,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+
+// Load cart from localStorage or start empty
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// Add event listeners to all "Add to Cart" buttons
+document.querySelectorAll(".add-to-cart").forEach(btn => {
+    btn.addEventListener("click", function (e) {
+        e.preventDefault(); // ✅ Prevents the link from jumping to the top of the page
+
+        const name = this.dataset.name;
+        const price = parseFloat(this.dataset.price);
+        const img = this.dataset.img;
+
+        cart.push({ name, price, img });
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        // Optional: redirect to cart page
+        window.location.href = "cart";
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ... (your existing signupForm and signinForm code) ...
+
+  // ✅ ADD THIS LOGOUT LOGIC
+  const logoutBtn = document.getElementById('logout-btn');
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      // Clear user data (like the cart) from storage
+      localStorage.removeItem('cart');
+      // If you store an authentication token, remove it too:
+      // localStorage.removeItem('authToken');
+
+      alert("You have been successfully logged out.");
+
+      // Redirect to the sign-in page
+      window.location.href = 'signin';
+    });
+  }
+});

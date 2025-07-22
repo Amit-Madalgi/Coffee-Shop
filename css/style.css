@@ -693,3 +693,12 @@ input::-webkit-inner-spin-button {
 
 }
 
+#cart-btn
+{
+    width: 65px;
+    height: 65px;
+    font-size: 35px;
+    color: white;
+    background-color: transparent;
+    margin:0 1rem;
+}
