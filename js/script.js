@@ -94,3 +94,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // ... (your existing signup, signin, and logout logic) ...
+
+    // ✅ NEW: CONTACT FORM SUBMISSION LOGIC
+    const contactForm = document.getElementById('contact-form');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Prevent the form from reloading the page
+
+            // Get the data from the form inputs
+            const name = contactForm.querySelector('input[name="name"]').value;
+            const email = contactForm.querySelector('input[name="email"]').value;
+            const phone = contactForm.querySelector('input[name="phone"]').value;
+
+            try {
+                const res = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, phone })
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    alert('✅ Thank you for your message! We will be in touch soon.');
+                    contactForm.reset(); // Clear the form fields
+                } else {
+                    alert(`❌ Error: ${data.msg}`);
+                }
+
+            } catch (err) {
+                console.error('Contact form error:', err);
+                alert('❌ There was a problem sending your message. Please try again.');
+            }
+        });
+    }
+});

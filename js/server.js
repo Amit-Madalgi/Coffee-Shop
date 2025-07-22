@@ -30,19 +30,6 @@ app.get('/cart', (req, res) => res.sendFile(path.join(__dirname, '../static/cart
 // Auth API
 app.use('/api/auth', authRoutes);
 
-// ✅ Contact form handler
-app.post('/api/contact', async (req, res) => {
-  const { name, email, message } = req.body;
-  try {
-    const contact = new Contact({ name, email, message });
-    await contact.save();
-    res.status(200).json({ msg: "Message sent successfully!" });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ msg: "Server error. Please try again." });
-  }
-});
-
 // ... at the top with other imports
 const Order = require('./orderModel'); // ⬅️ IMPORT THE NEW ORDER MODEL
 
@@ -75,7 +62,21 @@ app.post('/api/orders/place', async (req, res) => {
     }
 });
 
-// ... (your app.listen call) ...
+app.post('/api/contact', async (req, res) => {
+  // This console.log is essential for debugging
+  console.log("Data received on server:", req.body);
+
+  const { name, email, phone } = req.body;
+
+  try {
+    const contact = new Contact({ name, email, phone });
+    await contact.save();
+    res.status(200).json({ msg: "Message sent successfully!" });
+  } catch (err) {
+    console.error("Validation Error:", err.message);
+    res.status(500).json({ msg: "Server validation error. Check server logs." });
+  }
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running at http://localhost:${PORT}/signin`));

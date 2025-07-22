@@ -700,5 +700,5 @@ input::-webkit-inner-spin-button {
     font-size: 35px;
     color: white;
     background-color: transparent;
-    margin:0 1rem;
+    margin-top: 15px;
 }
